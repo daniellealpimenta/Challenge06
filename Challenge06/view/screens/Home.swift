@@ -26,7 +26,7 @@ struct Home: View {
                     SecondColor: Color("SecondCoreData"),
                     title: "Nunca Joguei",
                     subtitle: "Armazenado com Core Data",
-                    icon: "gamecontroller.fill",
+                    icon: "circle.grid.cross.left.filled",
                     itens: [0,1,2,3,4,5,6,7,8,9,10]
                 )
                 

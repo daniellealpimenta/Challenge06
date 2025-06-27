@@ -26,16 +26,17 @@ struct ItensBox: View {
                         endPoint: .bottom
                     )
                 )
-            VStack(alignment: .center) {
+            VStack(alignment: .center, spacing: 8) {
                 Text(title)
-                    .font(.title)
+                    .font(.system(size: 22, weight: .bold))
                     .foregroundStyle(.white)
                 Text(subtitle)
+                    .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(.white)
-                    .padding(.bottom, 8)
                 ScrollView(.vertical, showsIndicators: false){
                     ForEach(itens, id: \.self) { item in
                         Text("(item)")
+                            .foregroundStyle(.white)
                     }
                 }
                 Image(systemName: icon)
