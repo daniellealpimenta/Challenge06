@@ -17,10 +17,10 @@ struct ConteinerRowView: View {
     // - Core Data = CoreDataBackGround
     
     
-    let Title: String = "Container"
-    let description: String = "Descrição do Container detalhado e explicativo, onde o usuário poderá entender melhor o que é."
-    let color: String = "CoreDataBackground" // Pode ser "SwiftDataBackGround" ou "CoreDataBackGround"
-    
+    let Title: String
+    let description: String
+    let color: String  // Pode ser "SwiftDataBackGround" ou "CoreDataBackGround"
+        
     // Lógica para definir se é Swift Data ou Core Data
     var textColor: Color {
         // Definir a cor do texto com base na cor de fundo
@@ -33,6 +33,7 @@ struct ConteinerRowView: View {
             return Color.primary
         }
     }
+        
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -42,6 +43,7 @@ struct ConteinerRowView: View {
                 .foregroundColor(Color(textColor))
                 .padding(.top, 10)
                 .padding(.leading, 12)
+    
             Text(description)
                 .padding(.bottom, 25)
                 .padding(.horizontal, 12)
@@ -56,9 +58,9 @@ struct ConteinerRowView: View {
 
 }
 
-struct ConteinerRowView_Preview: PreviewProvider {
-    static var previews: some View {
-        return ConteinerRowView()
-            .previewLayout(.sizeThatFits)
-    }
-}
+//struct ConteinerRowView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        return ConteinerRowView(Title: "SwiftData", description: "lorem daohsd hasidu haiosudh oaisudh apisudhsudh aipsudh oaiuhsd", color: "SwiftDataBackGround")
+//            .previewLayout(.sizeThatFits)
+//    }
+//}

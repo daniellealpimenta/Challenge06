@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ButtonView: View {
+    @Binding var shouldNavigate: Bool
+    
+    
     var body: some View {
-        Button(action: {}) {
+        Button(action: {
+            shouldNavigate.toggle()
+        }) {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 28)
                     .foregroundStyle(
@@ -22,10 +27,9 @@ struct ButtonView: View {
                     .font(.system(size: 20, weight: .semibold))
             }
         }
-        
     }
 }
 
-#Preview {
-    ButtonView()
-}
+//#Preview {
+//    ButtonView()
+//}

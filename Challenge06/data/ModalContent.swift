@@ -17,13 +17,13 @@ struct ConteudoModal {
 //Como ja esta estruturado em cima o que vai ter na pagina agora é so popular o que realmente de fato vai ter na tela
 let conteudosModal: [ConteudoModal] = [
     ConteudoModal(
-        title: "Prevenção da Dengue",
-        description: "Evite água parada, tampe tonéis e limpe calhas.",
+        title: "SwiftData",
+        description: "aaaa swiftData",
         icon: "drop.triangle"
     ),
     ConteudoModal(
-        title: "Vacinação Antirrábica",
-        description: "Leve seu pet ao posto de vacinação mais próximo.",
+        title: "CoreData",
+        description: "aaaa coreData",
         icon: "cross.case.fill"
     )
 ]
