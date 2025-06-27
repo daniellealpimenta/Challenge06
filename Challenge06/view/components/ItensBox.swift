@@ -27,10 +27,10 @@ struct ItensBox: View {
                     )
                 )
             VStack(alignment: .center) {
-                Text("Joguei")
+                Text(title)
                     .font(.title)
                     .foregroundStyle(.white)
-                Text("Armazenado com Swift Data ")
+                Text(subtitle)
                     .foregroundStyle(.white)
                     .padding(.bottom, 8)
                 ScrollView(.vertical, showsIndicators: false){

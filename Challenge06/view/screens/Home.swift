@@ -9,7 +9,31 @@ import SwiftUI
 
 struct Home: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            
+            HStack {
+                ItensBox(
+                    firstColor: Color("MainBlue"),
+                    SecondColor: Color("SecondSwiftData"),
+                    title: "Joguei",
+                    subtitle: "Armazenado com swift data",
+                    icon: "gamecontroller.fill",
+                    itens: [0,1,2,3,4,5,6,7,8,9,10] // trocar para os itens
+                )
+                ItensBox(
+                    firstColor: Color("MainPurple"),
+                    SecondColor: Color("SecondCoreData"),
+                    title: "Nunca Joguei",
+                    subtitle: "Armazenado com Core Data",
+                    icon: "gamecontroller.fill",
+                    itens: [0,1,2,3,4,5,6,7,8,9,10]
+                )
+                
+            }
+            
+            
+        }
     }
 }
 
