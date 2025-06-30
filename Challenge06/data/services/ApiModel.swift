@@ -8,7 +8,7 @@
 import Foundation
 
 struct ApiModel : Codable, Identifiable {
-    var id: Int
+    var id: UUID
     let name: String
     let backgroundImage : String
 }
