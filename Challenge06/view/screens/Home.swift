@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Home: View {
     @State var shouldNavigate: Bool = false
+    
 
     var body: some View {
         NavigationStack {

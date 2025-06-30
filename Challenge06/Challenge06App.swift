@@ -12,6 +12,7 @@ struct Challenge06App: App {
     var body: some Scene {
         WindowGroup {
             Home()
+                .environment(\.managedObjectContext, CoreDataController.container.viewContext)
         }
     }
 }
