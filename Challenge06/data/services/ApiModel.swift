@@ -8,9 +8,12 @@
 import Foundation
 
 struct ApiModel : Codable, Identifiable {
-    var id: UUID
+    var id: Int
     let name: String
-    let backgroundImage : String
+    let background_image: String
 }
-    
+
+struct ApiResponse : Codable {
+    let results : [ApiModel]
+}
 
