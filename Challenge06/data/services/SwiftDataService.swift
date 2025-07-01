@@ -18,7 +18,7 @@ class SwiftDataService {
     @MainActor
     private init() {
         // Change isStoredInMemoryOnly to false if you would like to see the data persistance after kill/exit the app
-        self.modelContainer = try! ModelContainer(for: ApiModelClass.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        self.modelContainer = try! ModelContainer(for: ApiModelClass.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         self.modelContext = modelContainer.mainContext
     }
     
@@ -37,5 +37,14 @@ class SwiftDataService {
         } catch {
             fatalError(error.localizedDescription)
         }
+    }
+    
+    func deleteGames() {
+        do {
+            try modelContext.delete(model: ApiModelClass.self)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+        
     }
 }

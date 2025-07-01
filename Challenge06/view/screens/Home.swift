@@ -15,8 +15,6 @@ struct Home: View {
     @StateObject var swiftDataViewModel: SwiftDataViewModel =  SwiftDataViewModel(dataSource: .shared)
     @StateObject var coreDataController: CoreDataController = CoreDataController()
     
-    @Environment(\.managedObjectContext) var moc
-    
     @State var selectedGame: ApiModel?
     
     var body: some View {
@@ -37,14 +35,14 @@ struct Home: View {
                                     let isSelected = (game.id == selectedGame?.id)
                                     
                                     ApiCardView(game: game, isSelected: isSelected)
-                                    .animation(.easeInOut(duration: 0.2), value: selectedGame)
-                                    .onTapGesture {
-                                        if isSelected{
-                                            selectedGame = nil
-                                        }else {
-                                            selectedGame = game
+                                        .animation(.easeInOut(duration: 0.2), value: selectedGame)
+                                        .onTapGesture {
+                                            if isSelected{
+                                                selectedGame = nil
+                                            }else {
+                                                selectedGame = game
+                                            }
                                         }
-                                    }
                                 }
                             } else {
                                 ProgressView()
@@ -79,26 +77,46 @@ struct Home: View {
                                 coreDataController.addGame(name: selectedGame.name, backgroundImage: selectedGame.background_image)
                             }
                         }
-
+                        
                     }
-
-
+                    
+                    
                     Spacer()
-
-                    ButtonView(shouldNavigate: $shouldNavigate)
-                    Button(action: {
-                        coreDataController.deleteAll()
-                    }) {
-                        Text("Teste")
+                    
+                    HStack{
+                        Button(action: {
+                            coreDataController.deleteAll()
+                            swiftDataViewModel.deleteAll()
+                        }) {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 28)
+                                    .fill(Color.red)
+                                    .frame(width: 180.5, height: 60)
+                                HStack{
+                                    Image(systemName: "trash.fill")
+                                        .foregroundStyle(.white)
+                                    Text("Limpar")
+                                        .foregroundStyle(.white)
+                                        .font(.system(size: 20, weight: .semibold))
+                                }
+                                
+                            }
+                            
+                            
+                        }
+                        
+                        ButtonView(shouldNavigate: $shouldNavigate)
                     }
+                    
                     Spacer()
-
-
+                    
+                    
                 }.navigationDestination(isPresented: $shouldNavigate) {
                     DetailsView()
                 }
                 .onAppear{
                     viewModel.fetch()
+                    swiftDataViewModel.fetchGames()
                     coreDataController.fetchGames()
                 }
             }

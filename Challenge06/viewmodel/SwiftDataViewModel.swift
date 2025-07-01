@@ -31,4 +31,13 @@ class SwiftDataViewModel: ObservableObject {
         dataSource.addGame(game)
         self.games = dataSource.fetchGames()
     }
+    
+    func fetchGames() {
+        self.games = dataSource.fetchGames()
+    }
+    
+    func deleteAll() {
+        dataSource.deleteGames()
+        fetchGames()
+    }
 }
