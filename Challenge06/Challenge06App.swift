@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 import CoreData
 
 @main
@@ -14,7 +15,9 @@ struct Challenge06App: App {
     var body: some Scene {
         WindowGroup {
             Home()
+                .environmentObject(coreDataController)
                 .environment(\.managedObjectContext, coreDataController.container.viewContext)
         }
+        .modelContainer(for: ApiModelClass.self)
     }
 }

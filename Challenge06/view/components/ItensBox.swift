@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ItensBox: View {
-    
+
     let firstColor: Color
     let SecondColor: Color
     let title: String
     let subtitle: String
     let icon: String
-    let itens: [String]
+    let itensSwift: [ApiModelClass]?
+    let itensCore: [String]?
 
     var body: some View {
         ZStack(alignment: .center){
@@ -34,11 +35,26 @@ struct ItensBox: View {
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(.white)
                 ScrollView(.vertical, showsIndicators: false){
-                    ForEach(itens, id: \.self) { item in
-                        Text(item)
-                            .foregroundStyle(.white)
-                    }
+                    if firstColor == Color("MainBlue"){
+                       if let itensSwift = self.itensSwift{
+                           ForEach(itensSwift ,id: \.self) { item in
+                               Text(item.name)
+                                   .foregroundStyle(.white)
+
+                           }
+
+                       }
+               } else {
+                    if let itensCore = self.itensCore{
+                        ForEach(itensCore, id: \.self) { item in
+                            Text(item)
+                                .foregroundStyle(.white)
+
+                        }
+                   }
                 }
+                   
+               }
                 Image(systemName: icon)
                     .font(.system(size: 32))
                     .foregroundStyle(.white)
@@ -55,6 +71,6 @@ struct ItensBox: View {
 //        title: "Joguei",
 //        subtitle: "Armazenado com swift data",
 //        icon: "gamecontroller.fill",
-//        //itens: [0,1,2,3,4,5,6,7,8,9,10]
+//        itens: [0,1,2,3,4,5,6,7,8,9,10]
 //    )
 //}
