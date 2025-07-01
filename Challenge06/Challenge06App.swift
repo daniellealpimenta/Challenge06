@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct Challenge06App: App {
+    @StateObject private var coreDataController = CoreDataController()
     var body: some Scene {
         WindowGroup {
             Home()
-                .environment(\.managedObjectContext, CoreDataController.container.viewContext)
+                .environment(\.managedObjectContext, coreDataController.container.viewContext)
         }
     }
 }

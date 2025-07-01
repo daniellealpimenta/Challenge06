@@ -63,3 +63,5 @@ playground.xcworkspace
 
 # Environment settings (optional, remove if you use env vars)
 .env
+
+.DS_Store

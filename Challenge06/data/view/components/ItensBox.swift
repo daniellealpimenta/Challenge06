@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ItensBox: View {
-
+    
     let firstColor: Color
     let SecondColor: Color
     let title: String
     let subtitle: String
     let icon: String
-    let itens: [Int]
+    let itens: [String]
 
     var body: some View {
         ZStack(alignment: .center){
@@ -35,7 +35,7 @@ struct ItensBox: View {
                     .foregroundStyle(.white)
                 ScrollView(.vertical, showsIndicators: false){
                     ForEach(itens, id: \.self) { item in
-                        Text("(item)")
+                        Text(item)
                             .foregroundStyle(.white)
                     }
                 }
@@ -48,13 +48,13 @@ struct ItensBox: View {
     }
 }
 
-#Preview {
-    ItensBox(
-        firstColor: Color("MainBlue"),
-        SecondColor: Color("SecondSwiftData"),
-        title: "Joguei",
-        subtitle: "Armazenado com swift data",
-        icon: "gamecontroller.fill",
-        itens: [0,1,2,3,4,5,6,7,8,9,10]
-    )
-}
+//#Preview {
+//    ItensBox(
+//        firstColor: Color("MainBlue"),
+//        SecondColor: Color("SecondSwiftData"),
+//        title: "Joguei",
+//        subtitle: "Armazenado com swift data",
+//        icon: "gamecontroller.fill",
+//        //itens: [0,1,2,3,4,5,6,7,8,9,10]
+//    )
+//}
