@@ -7,10 +7,13 @@
 
 import Foundation
 
-struct ApiModel : Codable, Identifiable {
-    var id: UUID
+struct ApiModel : Codable, Identifiable, Equatable {
+    var id: Int
     let name: String
-    let backgroundImage : String
+    let background_image: String
 }
-    
+
+struct ApiResponse : Codable {
+    let results : [ApiModel]
+}
 

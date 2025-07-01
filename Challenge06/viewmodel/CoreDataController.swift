@@ -7,6 +7,7 @@
 
 import CoreData
 import Foundation
+import SwiftUICore
 
 class CoreDataController: ObservableObject {
     let container = NSPersistentContainer(name: "Games")
@@ -18,9 +19,7 @@ class CoreDataController: ObservableObject {
                 print("Falha ao inicializar o Core Data: \(error.localizedDescription)")
             } else {
                 self.fetchGames()
-                self.deleteGame(at: IndexSet(integer: 0))
             }
-            
         }
     }
     
@@ -30,7 +29,7 @@ class CoreDataController: ObservableObject {
     func fetchGames() {
         let request = NSFetchRequest<GamesEntity>(entityName: "GamesEntity")
         do {
-            let games = try container.viewContext.fetch(request)
+            games = try container.viewContext.fetch(request)
             print("Jogos carregados com sucesso: \(games)")
         } catch {
             print("Erro ao buscar jogos: \(error.localizedDescription)")
@@ -48,15 +47,17 @@ class CoreDataController: ObservableObject {
     // Deletar Jogo
     func deleteGame(at indexSet: IndexSet) {
         guard let index = indexSet.first else { return }
-        guard index < games.count else {
-            print("Índice \(index) fora do intervalo para deletar")
-            return
-        }
         let entity = games[index]
         container.viewContext.delete(entity)
         salvar()
     }
     
+    func deleteAll() {
+        for game in games {
+            container.viewContext.delete(game)
+        }
+        salvar()
+    }
     // Salvar
     private func salvar() {
         do {
