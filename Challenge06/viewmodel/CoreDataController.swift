@@ -16,7 +16,11 @@ class CoreDataController: ObservableObject {
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Falha ao inicializar o Core Data: \(error.localizedDescription)")
+            } else {
+                self.fetchGames()
+                self.deleteGame(at: IndexSet(integer: 0))
             }
+            
         }
     }
     
@@ -44,6 +48,10 @@ class CoreDataController: ObservableObject {
     // Deletar Jogo
     func deleteGame(at indexSet: IndexSet) {
         guard let index = indexSet.first else { return }
+        guard index < games.count else {
+            print("Índice \(index) fora do intervalo para deletar")
+            return
+        }
         let entity = games[index]
         container.viewContext.delete(entity)
         salvar()
