@@ -7,11 +7,8 @@
 
 import Foundation
 
-<<<<<<< HEAD
-struct ApiModel : Codable, Identifiable {
-=======
+
 struct ApiModel : Codable, Identifiable, Equatable {
->>>>>>> 550c4dddb216e20d10f711482f1d1390b337098f
     var id: Int
     let name: String
     let background_image: String
