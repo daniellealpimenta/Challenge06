@@ -20,7 +20,7 @@ struct ButtonView: View {
                     .foregroundStyle(
                         LinearGradient(colors: [Color("MainBlue"), Color("PurpleButton"), Color("MainPurple")], startPoint: .leading, endPoint: .trailing)
                     )
-                    .frame(width: 361, height: 60)
+                    .frame(width: 180.5, height: 60)
                 
                 Text("Ver Detalhes")
                     .foregroundStyle(.white)
