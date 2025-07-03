@@ -28,8 +28,15 @@ class SwiftDataViewModel: ObservableObject {
     func addGame(_ gameFromApi: ApiModel) {
         let game = ApiModelClass(gameFromApi)
         
+        if (games.contains(where: { $0.name == game.name })) {
+            print("Jogo já existe no SwiftData: \(game.name)")
+            return
+        }
         dataSource.addGame(game)
         self.games = dataSource.fetchGames()
+        print("fecthgames \(dataSource.fetchGames())")
+        print("selfgames \(self.games)")
+
     }
     
     func fetchGames() {
@@ -40,4 +47,14 @@ class SwiftDataViewModel: ObservableObject {
         dataSource.deleteGames()
         fetchGames()
     }
+    
+    func deleteGame(_ gameFromApi: ApiModel) {
+        if let gameToDelete = games.first(where: { $0.name == gameFromApi.name }) {
+            dataSource.deleteGame(gameToDelete)
+            fetchGames()
+        } else {
+            print("Jogo não encontrado para deletar: \(gameFromApi.name)")
+        }
+    }
+
 }

@@ -47,4 +47,13 @@ class SwiftDataService {
         }
         
     }
+    
+    func deleteGame(_ game: ApiModelClass) {
+        modelContext.delete(game)
+        do {
+            try modelContext.save()
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
 }

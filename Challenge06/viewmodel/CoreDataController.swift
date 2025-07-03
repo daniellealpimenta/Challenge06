@@ -11,7 +11,8 @@ import SwiftUICore
 
 class CoreDataController: ObservableObject {
     let container = NSPersistentContainer(name: "Games")
-    @Published var games: [GamesEntity] = []
+    @Published var gamesEntity: [GamesEntity] = []
+    @Published var games: [ApiModel] = []
     
     init() {
         container.loadPersistentStores { description, error in
@@ -29,31 +30,37 @@ class CoreDataController: ObservableObject {
     func fetchGames() {
         let request = NSFetchRequest<GamesEntity>(entityName: "GamesEntity")
         do {
-            games = try container.viewContext.fetch(request)
-            print("Jogos carregados com sucesso: \(games)")
+            gamesEntity = try container.viewContext.fetch(request)
+            print("Jogos carregados com sucesso: \(gamesEntity)")
+            games = gamesEntity.map { ApiModel(id: Int($0.id), name: $0.name ?? "", background_image: $0.backgroundImage ?? "") }
         } catch {
             print("Erro ao buscar jogos: \(error.localizedDescription)")
         }
     }
     
     // Função para adicionar um novo jogo ao Core Data
-    func addGame(name: String, backgroundImage: String) {
+    func addGame(game: ApiModel) {
+        if (gamesEntity.contains(where: { $0.name == game.name })) {
+            print("Jogo já existe: \(game.name)")
+            return
+        }
         let novoGame = GamesEntity(context: container.viewContext)
-        novoGame.name = name
-        novoGame.backgroundImage = backgroundImage
+        novoGame.name = game.name
+        novoGame.backgroundImage = game.background_image
+    
         salvar()
     }
     
     // Deletar Jogo
     func deleteGame(at indexSet: IndexSet) {
         guard let index = indexSet.first else { return }
-        let entity = games[index]
+        let entity = gamesEntity[index]
         container.viewContext.delete(entity)
         salvar()
     }
     
     func deleteAll() {
-        for game in games {
+        for game in gamesEntity {
             container.viewContext.delete(game)
         }
         salvar()
