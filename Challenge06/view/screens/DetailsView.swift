@@ -10,20 +10,22 @@ import SwiftUI
 struct DetailsView: View {
     @State var shouldModalView: Bool = false
     
-    @State var num: Int = 0
+    @State var conteudoModalLocal = conteudosModal[0]
+    
     
     var body: some View {
+        ZStack{
             VStack(){
                 Spacer()
                 
                 VStack(alignment: .leading, spacing: 16){
                     ConteinerRowView(Title: "SwiftData", description: "lorem daohsd hasidu haiosudh oaisudh apisudhsudh aipsudh oaiuhsd", color: "SwiftDataBackGround").onTapGesture {
-                        num = 0
+                        conteudoModalLocal = conteudosModal[0]
                         shouldModalView.toggle()
                     }
                     ConteinerRowView(Title: "CoreData", description: "lorem daohsd hasidu haiosudh oaisudh apisudhsudh aipsudh oaiuhsd", color:
                                         "CoreDataBackground").onTapGesture {
-                        num = 1
+                        conteudoModalLocal = conteudosModal[1]
                         shouldModalView.toggle()
                     }
                 }
@@ -34,9 +36,13 @@ struct DetailsView: View {
                 ExecutionTime()
                 
                 Spacer()
-            }.sheet(isPresented: $shouldModalView){
-                ModalView(conteudo: conteudosModal[num])
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(.darkBackGround))
+            .sheet(isPresented: $shouldModalView){
+                ModalView(conteudo: $conteudoModalLocal)
             }
+            
+        }.ignoresSafeArea(.all)
     }
 }
 

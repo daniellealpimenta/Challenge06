@@ -13,11 +13,16 @@ import CoreData
 struct Challenge06App: App {
     @StateObject private var coreDataController = CoreDataController()
     var body: some Scene {
-        WindowGroup {
-            Home()
-                .environmentObject(coreDataController)
-                .environment(\.managedObjectContext, coreDataController.container.viewContext)
-        }
-        .modelContainer(for: ApiModelClass.self)
+        
+            WindowGroup {
+                Home()
+                    .environmentObject(coreDataController)
+                    .environment(\.managedObjectContext, coreDataController.container.viewContext)
+                    
+                    
+            }
+            .modelContainer(for: ApiModelClass.self)
+        
+        
     }
 }
