@@ -13,32 +13,34 @@ struct DetailsView: View {
     @State var num: Int = 0
     
     var body: some View {
-        ScrollView {
-            VStack(){
-                Spacer()
-                
-                VStack(alignment: .leading, spacing: 16){
-                    ConteinerRowView(Title: "SwiftData", description: "lorem daohsd hasidu haiosudh oaisudh apisudhsudh aipsudh oaiuhsd", color: "SwiftDataBackGround").onTapGesture {
-                        num = 0
-                        shouldModalView.toggle()
-                    }
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 10){
+                    Spacer()
                     
-                    ConteinerRowView(Title: "CoreData", description: "lorem daohsd hasidu haiosudh oaisudh apisudhsudh aipsudh oaiuhsd", color:
-                                        "CoreDataBackground").onTapGesture {
-                        num = 1
-                        shouldModalView.toggle()
+                    VStack(alignment: .leading, spacing: 16){
+                        ConteinerRowView(Title: "SwiftData", description: "A forma moderna de persistir dados, com código mínimo e integração 'mágica' ao SwiftUI.", color: "SwiftDataBackGround").onTapGesture {
+                            num = 0
+                            shouldModalView.toggle()
+                        }
+                        
+                        ConteinerRowView(Title: "CoreData", description: "O framework da Apple para controle total, performance e gerenciamento de dados complexos.", color:
+                                            "CoreDataBackground").onTapGesture {
+                            num = 1
+                            shouldModalView.toggle()
+                        }
                     }
+                    Spacer()
+                    
+                    ExecutionTime()
+                    
+                    Spacer()
+                }.sheet(isPresented: $shouldModalView){
+                    ModalView(conteudo: conteudosModal[num])
                 }
-                
-                
-                Spacer()
-                
-                ExecutionTime()
-                
-                Spacer()
-            }.sheet(isPresented: $shouldModalView){
-                ModalView(conteudo: conteudosModal[num])
             }
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .background(Color.darkBackGround)
         }
     }
 }
