@@ -31,13 +31,12 @@ struct DetailsView: View {
                             shouldModalView.toggle()
                         }
                     }
-                    .padding()
+                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
                     Spacer()
                     
                     ExecutionTime()
                     
-                    .padding()
-                    Spacer()
+                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                         
                 }.sheet(isPresented: $shouldModalView){
                     ModalView(conteudos: $conteudos, num: $num)
