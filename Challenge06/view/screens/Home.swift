@@ -62,7 +62,7 @@ struct Home: View {
                             firstColor: Color("MainBlue"),
                             SecondColor: Color("SecondSwiftData"),
                             title: "Joguei",
-                            subtitle: "Armazenado com swift data",
+                            subtitle: "Armazenado com Swift Data",
                             icon: "gamecontroller.fill",
                             itensSwift: swiftDataViewModel.games,
                             itensCore: []

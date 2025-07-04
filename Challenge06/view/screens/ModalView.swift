@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ModalView: View {
-    @Binding var conteudo: ConteudoModal // aqui é o varivel de paramentro da view que vai receber as informaçoes da tela de acordo com a posicao do vetor.
+    @Binding var conteudos: [ConteudoModal]// aqui é o varivel de paramentro da view que vai receber as informaçoes da tela de acordo com a posicao do vetor.
+    @Binding var num: Int
     @State var showImage: Bool = false
     @State var selectedImage: Image?
 
@@ -21,7 +22,7 @@ struct ModalView: View {
                         Text("Como Funciona")
                             .font(.system(size: 20, weight: .semibold))
                         VStack{
-                            conteudo.howItWorks
+                            conteudos[num].howItWorks
                                 .multilineTextAlignment(.leading)
                                 .padding(10)
                             
@@ -31,7 +32,7 @@ struct ModalView: View {
                         Text("Vantagens")
                             .font(.system(size: 20, weight: .semibold))
                         VStack{
-                            conteudo.advantages
+                            conteudos[num].advantages
                                 .multilineTextAlignment(.leading)
                                 .padding(10)
                             
@@ -41,7 +42,7 @@ struct ModalView: View {
                         Text("Quando Usar")
                             .font(.system(size: 20, weight: .semibold))
                         VStack{
-                            conteudo.howItWorks
+                            conteudos[num].howItWorks
                                 .multilineTextAlignment(.leading)
                                 .padding(10)
                             
@@ -52,7 +53,7 @@ struct ModalView: View {
                             .font(.system(size: 20, weight: .semibold))
                         
                         VStack(spacing: 15){
-                            ForEach(conteudo.stepByStep) { step in
+                            ForEach(conteudos[num].stepByStep) { step in
                                 VStack(alignment: .leading, spacing: 15){
                                     step.description
                                         .font(.system(size: 18, weight: .regular))
@@ -72,7 +73,7 @@ struct ModalView: View {
                             }
                         }
                     }
-                    .navigationTitle(conteudo.title) // 👈 define o título no topo da modal
+                    .navigationTitle(conteudos[num].title) // 👈 define o título no topo da modal
                     .navigationBarTitleDisplayMode(.inline) // opcional, para deixar centralizado
                     .frame(maxWidth: .infinity, alignment: .leading) //frame para ele ocupar todo o espaço disponivel e alinhar o texto corretamente na esquerda
                     
@@ -93,7 +94,7 @@ struct ModalView: View {
         
 }
 
-#Preview {
-    //O conteudo da tela vai aparecer de acordo com a posicao do vetor
-    ModalView(conteudo: .constant(conteudosModal[1]))
-}
+//#Preview {
+//    //O conteudo da tela vai aparecer de acordo com a posicao do vetor
+//    ModalView(conteudo: .constant(conteudos[1]))
+//}

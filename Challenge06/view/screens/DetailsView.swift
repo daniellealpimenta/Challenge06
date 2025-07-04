@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailsView: View {
     @State var shouldModalView: Bool = false
+    @State var conteudos: [ConteudoModal] = conteudosModal
     
     @State var num: Int = 0
     
@@ -36,7 +37,7 @@ struct DetailsView: View {
                     
                     Spacer()
                 }.sheet(isPresented: $shouldModalView){
-                    ModalView(conteudo: conteudosModal[num])
+                    ModalView(conteudos: $conteudos, num: $num)
                 }
             }
                 .frame(width: geometry.size.width, height: geometry.size.height)
