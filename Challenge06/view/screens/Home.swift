@@ -128,9 +128,12 @@ struct Home: View {
                     
                     Spacer()
                     
+//                        .frame(width: geometry.size.width, height: geometry.size.height)
+//                        .background(Color.darkBackGround)
                     
                 }.navigationDestination(isPresented: $shouldNavigate) {
                     DetailsView()
+                
                 }
                 .onAppear{
                     viewModel.fetch()
@@ -139,6 +142,8 @@ struct Home: View {
                     
                     
                 }
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .background(Color.darkBackGround)
             }
         }
     }
