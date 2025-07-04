@@ -13,6 +13,7 @@ struct DetailsView: View {
     @State var num: Int = 0
     
     var body: some View {
+        ScrollView {
             VStack(){
                 Spacer()
                 
@@ -21,6 +22,7 @@ struct DetailsView: View {
                         num = 0
                         shouldModalView.toggle()
                     }
+                    
                     ConteinerRowView(Title: "CoreData", description: "lorem daohsd hasidu haiosudh oaisudh apisudhsudh aipsudh oaiuhsd", color:
                                         "CoreDataBackground").onTapGesture {
                         num = 1
@@ -37,6 +39,7 @@ struct DetailsView: View {
             }.sheet(isPresented: $shouldModalView){
                 ModalView(conteudo: conteudosModal[num])
             }
+        }
     }
 }
 
