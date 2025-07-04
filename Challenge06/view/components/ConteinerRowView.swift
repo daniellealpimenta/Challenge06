@@ -41,20 +41,20 @@ struct ConteinerRowView: View {
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(Color(textColor))
-                .padding(.top, 10)
-                .padding(.leading, 12)
+                
     
             Text(description)
-                .padding(.bottom, 25)
-                .padding(.horizontal, 12)
-                .lineLimit(1)
+                .multilineTextAlignment(.leading)
+               
         }
+        .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color(color))
                 .shadow(color: Color.black.opacity(0.05), radius: 4, x: 0, y: 2)
         )
+        
     }
 
 }
