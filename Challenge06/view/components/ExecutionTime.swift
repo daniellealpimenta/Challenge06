@@ -84,7 +84,7 @@ struct ExecutionTime: View {
                                 .foregroundStyle(Color("SwiftDataTitle"))
                                 .font(.system(size: 18, weight: .bold))
                             VStack{
-                                Text("~7")
+                                Text("~13")
                                     .font(.system(size: 32, weight: .semibold))
                             }
                             Spacer()
@@ -109,7 +109,7 @@ struct ExecutionTime: View {
                                 .foregroundStyle(Color("CoreDataTitle"))
                                 .font(.system(size: 18, weight: .bold))
                             VStack{
-                                Text("~29")
+                                Text("~30")
                                     .font(.system(size: 32, weight: .semibold))
                             }
                             Spacer()
