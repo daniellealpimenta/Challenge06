@@ -7,9 +7,19 @@
 
 
 import Foundation
+import SwiftUI
 
 class ApiViewModel: ObservableObject {
     @Published var games : ApiResponse?
+    @Published var gameList: [ApiModel] = []
+    
+    @ObservedObject var swiftDataViewModel: SwiftDataViewModel
+    @ObservedObject var coreDataController: CoreDataController
+    
+    init(swiftDataViewModel: SwiftDataViewModel, coreDataController: CoreDataController) {
+        self.swiftDataViewModel = swiftDataViewModel
+        self.coreDataController = coreDataController
+    }
 
     func fetch () {
         guard let url = URL(string: "https://api.rawg.io/api/games?key=04e139f54ad64c8da513bbec4c03e8ba") else {
@@ -30,6 +40,24 @@ class ApiViewModel: ObservableObject {
 
                 DispatchQueue.main.async {
                     self.games = parsed
+                    self.gameList = parsed.results
+                    
+                    self.swiftDataViewModel.fetchGames()
+                    
+                    for gameParsed in parsed.results {
+                        for game in self.gameList {
+                            if gameParsed.name == game.name {
+                                self.gameList.removeAll { $0.name == game.name }
+                                self.gameList.insert(game, at: 0)
+                            }
+                        }
+                    }
+                    self.gameList = self.gameList.filter { game in
+                        !self.swiftDataViewModel.games.contains(where: { $0.name == game.name })
+                        && !self.coreDataController.games.contains(where: { $0.name == game.name })
+                    }
+                    print("GameList: \(self.swiftDataViewModel.games)")
+                    print("GameList: \(self.coreDataController.games)")
                 }
 
             } catch {
@@ -37,6 +65,7 @@ class ApiViewModel: ObservableObject {
             }
         }
         game.resume()
+    
     }
 }
 

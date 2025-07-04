@@ -10,39 +10,38 @@ import SwiftUI
 struct DetailsView: View {
     @State var shouldModalView: Bool = false
     
-    @State var conteudoModalLocal = conteudosModal[0]
-    
+    @State var num: Int = 0
     
     var body: some View {
-        ZStack{
-            VStack(){
-                Spacer()
-                
-                VStack(alignment: .leading, spacing: 16){
-                    ConteinerRowView(Title: "SwiftData", description: "lorem daohsd hasidu haiosudh oaisudh apisudhsudh aipsudh oaiuhsd", color: "SwiftDataBackGround").onTapGesture {
-                        conteudoModalLocal = conteudosModal[0]
-                        shouldModalView.toggle()
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 10){
+                    Spacer()
+                    
+                    VStack(alignment: .leading, spacing: 16){
+                        ConteinerRowView(Title: "SwiftData", description: "A forma moderna de persistir dados, com código mínimo e integração 'mágica' ao SwiftUI.", color: "SwiftDataBackGround").onTapGesture {
+                            num = 0
+                            shouldModalView.toggle()
+                        }
+                        
+                        ConteinerRowView(Title: "CoreData", description: "O framework da Apple para controle total, performance e gerenciamento de dados complexos.", color:
+                                            "CoreDataBackground").onTapGesture {
+                            num = 1
+                            shouldModalView.toggle()
+                        }
                     }
-                    ConteinerRowView(Title: "CoreData", description: "lorem daohsd hasidu haiosudh oaisudh apisudhsudh aipsudh oaiuhsd", color:
-                                        "CoreDataBackground").onTapGesture {
-                        conteudoModalLocal = conteudosModal[1]
-                        shouldModalView.toggle()
-                    }
+                    Spacer()
+                    
+                    ExecutionTime()
+                    
+                    Spacer()
+                }.sheet(isPresented: $shouldModalView){
+                    ModalView(conteudo: conteudosModal[num])
                 }
-                
-                
-                Spacer()
-                
-                ExecutionTime()
-                
-                Spacer()
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(.darkBackGround))
-            .sheet(isPresented: $shouldModalView){
-                ModalView(conteudo: $conteudoModalLocal)
             }
-            
-        }.ignoresSafeArea(.all)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .background(Color.darkBackGround)
+        }
     }
 }
 

@@ -19,4 +19,8 @@ class ApiModelClass: Identifiable {
         self.name = game.name
         self.backgroundImage = game.background_image
     }
+    
+    func toApiModel() -> ApiModel {
+        return ApiModel(id: id, name: name, background_image: backgroundImage)
+    }
 }

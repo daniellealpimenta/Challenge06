@@ -47,6 +47,7 @@ struct ConteinerRowView: View {
             Text(description)
                 .padding(.bottom, 25)
                 .padding(.horizontal, 12)
+                .lineLimit(1)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(

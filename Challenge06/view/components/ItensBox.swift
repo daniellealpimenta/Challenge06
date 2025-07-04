@@ -15,7 +15,7 @@ struct ItensBox: View {
     let subtitle: String
     let icon: String
     let itensSwift: [ApiModelClass]?
-    let itensCore: [String]?
+    let itensCore: [ApiModel]?
 
     var body: some View {
         ZStack(alignment: .center){
@@ -34,22 +34,21 @@ struct ItensBox: View {
                 Text(subtitle)
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(.white)
+                    .multilineTextAlignment(.center)
                 ScrollView(.vertical, showsIndicators: false){
                     if firstColor == Color("MainBlue"){
                        if let itensSwift = self.itensSwift{
-                           ForEach(itensSwift ,id: \.self) { item in
-                               Text(item.name)
-                                   .foregroundStyle(.white)
-
+                           ForEach(itensSwift, id: \.self) { item in
+                               ApiCardItemBox(game: item.toApiModel())
+                                   .draggable(item.toApiModel())
                            }
 
                        }
                } else {
                     if let itensCore = self.itensCore{
                         ForEach(itensCore, id: \.self) { item in
-                            Text(item)
-                                .foregroundStyle(.white)
-
+                            ApiCardItemBox(game: item)
+                                .draggable(item)
                         }
                    }
                 }
