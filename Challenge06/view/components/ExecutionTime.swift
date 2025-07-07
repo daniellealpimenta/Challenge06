@@ -34,7 +34,7 @@ struct ExecutionTime: View {
                         Text("Resultado baseado em um teste de desempenho com 10.000 itens, realizando todas as operações CRUD completas em ambos os frameworks.")
                             .font(.system(size: 15, weight: .regular))
 
-                        VStack{
+                        VStack(){
                             HStack{
                                 Text("SwiftData")
                                     .font(.system(size: 15, weight: .medium))
@@ -54,7 +54,7 @@ struct ExecutionTime: View {
                         
                     }
                     
-                    
+                    .padding()
                 }
 
                 )
@@ -65,7 +65,7 @@ struct ExecutionTime: View {
             Text("Linhas de Código")
                 .font(.title2)
                 .fontWeight(.bold)
-                .padding()
+                .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 0))
                 .multilineTextAlignment(.leading)
 
             Spacer()
