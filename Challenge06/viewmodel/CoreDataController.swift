@@ -7,7 +7,7 @@
 
 import CoreData
 import Foundation
-import SwiftUICore
+import SwiftUI
 
 class CoreDataController: ObservableObject {
     let container = NSPersistentContainer(name: "Games")
